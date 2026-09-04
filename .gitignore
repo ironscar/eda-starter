@@ -1,0 +1,4 @@
+repository/*/*.tar
+workloads/*/target
+helm-deployments/*/*.tgz
+helm-deployments/*/*/charts/*.tgz

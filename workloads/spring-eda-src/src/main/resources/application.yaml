@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: spring-eda-src
+  datasource:
+    # url: jdbc:postgresql://localhost:5432/postgres                  # for host run
+    # url: jdbc:postgresql://pgdb1:5432/postgres                      # for docker run
+    url: jdbc:postgresql://my-external-service:5432/postgres          # for k8s run
+    username: postgres
+    password: postgrespass
+    driver-class-name: org.postgresql.Driver
+  kafka:
+    # bootstrap-servers: localhost:9094,localhost:9095,localhost:9096                               # host run  (EXTERNAL_HOST listener)
+    # bootstrap-servers: kafka-0:9092,kafka-1:9092,kafka-2:9092                                     # docker run (PLAINTEXT listener)
+    bootstrap-servers: my-external-service:9097,my-external-service:9098,my-external-service:9099   # k8s run   (EXTERNAL_K8S listener)
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+
+server:
+  servlet:
+    context-path: /spring-eda-src
+  port: 8081

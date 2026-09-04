@@ -1,0 +1,11 @@
+# Default values for eda-stack-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Override values in subchart spring-eda-src
+spring-edasrc-chart:
+  replicaCount: 1
+
+# Override values in subchart spring-eda-tgt
+spring-edatgt-chart:
+  replicaCount: 1

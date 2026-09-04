@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: spring-eda-tgt
+  datasource:
+    # url: jdbc:postgresql://localhost:5432/postgres                  # for host run
+    # url: jdbc:postgresql://pgdb1:5432/postgres                      # for docker run
+    url: jdbc:postgresql://my-external-service:5432/postgres          # for k8s run
+    username: postgres
+    password: postgrespass
+    driver-class-name: org.postgresql.Driver
+  kafka:
+    # bootstrap-servers: localhost:9094,localhost:9095,localhost:9096                               # host run  (EXTERNAL_HOST listener)
+    # bootstrap-servers: kafka-0:9092,kafka-1:9092,kafka-2:9092                                     # docker run (PLAINTEXT listener)
+    bootstrap-servers: my-external-service:9097,my-external-service:9098,my-external-service:9099   # k8s run   (EXTERNAL_K8S listener)
+    consumer:
+      group-id: spring-task-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.eda.springtgt.domain
+        spring.json.type.mapping: "com.eda.springsrc.domain.TaskEvent:com.eda.springtgt.domain.TaskEvent"
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+
+server:
+  servlet:
+    context-path: /spring-eda-tgt
+  port: 8082

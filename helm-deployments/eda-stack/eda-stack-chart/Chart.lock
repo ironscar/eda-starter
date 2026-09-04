@@ -1,0 +1,9 @@
+dependencies:
+- name: spring-edasrc-chart
+  repository: file://../../spring-eda-src/spring-edasrc-chart
+  version: 0.1.0
+- name: spring-edatgt-chart
+  repository: file://../../spring-eda-tgt/spring-edatgt-chart
+  version: 0.1.0
+digest: sha256:2e14f4e7c168d7a32caaf73cecb153c48ebbaa018b5144ca7f6638ff585cbc13
+generated: "2026-09-03T17:03:28.926522404+05:30"

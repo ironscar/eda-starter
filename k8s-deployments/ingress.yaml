@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-eda-ingress
+  namespace: default
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: traefik
+  rules:
+  # Omit the "host" field to accept any traffic on localhost:8080
+  - http:
+      paths:
+      - path: /spring-eda-src
+        pathType: Prefix
+        backend:
+          service:
+            name: spring-eda-src-service
+            port:
+              name: http # uses the port name specified in the service.yaml as a best practice
+      - path: /spring-eda-tgt
+        pathType: Prefix
+        backend:
+          service:
+            name: spring-eda-tgt-service
+            port:
+              name: http # uses the port name specified in the service.yaml as a best practice
