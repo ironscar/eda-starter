@@ -4,7 +4,7 @@ This project is for looking into event-driven architectures and patterns
 
 ## Main Branches
 
-- `personal-github-kafka`: Kafka integration with Spring Boot apps
+- `kafka-master`: Kafka integration with Spring Boot apps
 
 ## Main Folders
 
